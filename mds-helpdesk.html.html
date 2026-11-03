@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Marvellous Dream Studio – Service Desk</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f3f8;--sf:#fff;--tx:#241a33;--mu:#6c6479;--bd:#e3dfeb;--side:#2a1b3d;--ac:#0e8a8c;--ac2:#f2b632;--dg:#c0392b;--ok:#1e8e5a;--wn:#b7791f;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#150f1e;--sf:#211832;--tx:#efeaf7;--mu:#a094b5;--bd:#382c4d;--side:#0e0916;--ac:#2fc1c3;--dg:#ff7a6b;--ok:#4cd08b;--wn:#f2b632}}
+:root[data-theme="dark"]{--bg:#150f1e;--sf:#211832;--tx:#efeaf7;--mu:#a094b5;--bd:#382c4d;--side:#0e0916;--ac:#2fc1c3;--dg:#ff7a6b;--ok:#4cd08b;--wn:#f2b632}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.5 Manrope,system-ui,sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.btn{background:var(--ac);color:#fff;border:0;border-radius:8px;padding:8px 14px;font-weight:700;cursor:pointer}
+:root[data-theme="dark"] .btn{color:#0e0916}
+.btn.g{background:transparent;color:var(--tx);border:1px solid var(--bd)}.btn.d{background:var(--dg);color:#fff}.btn.s{padding:4px 10px;font-size:12px}
+input,select,textarea{width:100%;background:var(--sf);border:1px solid var(--bd);border-radius:8px;padding:8px 10px}
+label{display:block;font-weight:700;font-size:12px;margin:10px 0 4px;color:var(--mu)}
+.login{min-height:100vh;display:grid;grid-template-columns:1.1fr 1fr}
+.hero{background:var(--side);color:#fff;padding:48px;display:flex;flex-direction:column;justify-content:center;gap:18px}
+.hero h1{font-size:44px;line-height:1.05;margin:0;font-weight:800;letter-spacing:-1px}.hero p{color:#c9bddb;max-width:44ch;margin:0}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800}.logo i{width:34px;height:34px;border-radius:10px 10px 10px 2px;background:linear-gradient(135deg,var(--ac2),var(--ac));display:grid;place-items:center;color:#2a1b3d;font-style:normal}
+.lbox{display:grid;place-items:center;padding:24px}.lbox form{width:100%;max-width:360px}
+.demo{margin-top:14px;font-size:12px;color:var(--mu)}.demo button{background:none;border:0;color:var(--ac);cursor:pointer;font-weight:700;padding:0 6px 0 0}
+.app{display:grid;grid-template-columns:230px 1fr;min-height:100vh}
+.side{background:var(--side);color:#fff;padding:18px 12px;display:flex;flex-direction:column;gap:4px;position:sticky;top:0;height:100vh}
+.side .logo{padding:4px 8px 18px}.side a{display:block;padding:9px 12px;border-radius:8px;color:#c9bddb;cursor:pointer;font-weight:500}
+.side a.on{background:rgba(255,255,255,.12);color:#fff;font-weight:700;box-shadow:inset 3px 0 var(--ac2)}
+.main{padding:22px 26px;min-width:0}.top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.top h2{margin:0;font-size:22px}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.card{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}
+.stat b{font-size:28px;display:block;line-height:1.1}.stat span{color:var(--mu);font-size:12px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.bar{display:flex;align-items:center;gap:8px;margin:7px 0;font-size:12px}.bar em{width:150px;font-style:normal;color:var(--mu)}.bar div{flex:1;background:var(--bg);border-radius:6px;height:10px;overflow:hidden}.bar u{display:block;height:100%;background:var(--ac);border-radius:6px}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:680px}th{text-align:left;font-size:12px;color:var(--mu);padding:8px;border-bottom:1px solid var(--bd)}td{padding:10px 8px;border-bottom:1px solid var(--bd);vertical-align:middle}
+tr.cl{cursor:pointer}tr.cl:hover{background:var(--bg)}
+.pill{display:inline-block;padding:2px 9px;border-radius:99px;font-size:11px;font-weight:700;border:1px solid currentColor;white-space:nowrap}
+.t-ac{color:var(--ac)}.t-wn{color:var(--wn)}.t-mu{color:var(--mu)}.t-pu{color:#8a5cd6}.t-ok{color:var(--ok)}.t-dg{color:var(--dg)}
+.p-Urgent{color:var(--dg)}.p-High{color:var(--wn)}.p-Medium{color:var(--ac)}.p-Low{color:var(--mu)}
+.od{color:var(--dg);font-weight:700;font-size:11px}
+.mask{position:fixed;inset:0;background:rgba(20,10,30,.55);display:grid;place-items:center;padding:16px;z-index:9;overflow:auto}
+.modal{background:var(--sf);border-radius:14px;padding:20px;width:100%;max-width:640px;max-height:92vh;overflow:auto;border:1px solid var(--bd)}
+.modal h3{margin:0 0 6px}.g2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+.cm{border-left:3px solid var(--bd);padding:2px 10px;margin:8px 0}.cm small,.lg{color:var(--mu);font-size:12px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:10px 16px;border-radius:8px;z-index:20;font-weight:700}
+.tp{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px;align-items:start}
+.crumb{color:var(--mu);font-size:12px;margin-bottom:6px}.crumb a{cursor:pointer;color:var(--ac);font-weight:700}
+.tln{list-style:none;margin:0;padding:0}.tln li{display:flex;gap:10px;padding:0 0 14px;position:relative}.tln li:before{content:"";position:absolute;left:13px;top:30px;bottom:2px;width:2px;background:var(--bd)}.tln li:last-child:before{display:none}.tln>li>div:last-child{min-width:0;overflow-wrap:anywhere}
+.av{flex:none;width:28px;height:28px;border-radius:50%;background:var(--ac2);color:#2a1b3d;display:grid;place-items:center;font-weight:800;font-size:11px}
+.chip{display:inline-block;background:var(--bg);border:1px solid var(--bd);border-radius:6px;padding:0 6px;font-size:12px;font-weight:700}
+.note{background:rgba(242,182,50,.16);border:1px solid var(--ac2);border-radius:8px;padding:8px 10px;margin-top:4px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.prop{display:grid;grid-template-columns:92px 1fr;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--bd)}.prop:last-child{border:0}.prop>span{color:var(--mu);font-size:12px;font-weight:700}
+.empty{text-align:center;color:var(--mu);padding:28px}
+@media(max-width:900px){.tp{grid-template-columns:1fr}}
+@media(max-width:820px){.login{grid-template-columns:1fr}.hero{padding:28px}.hero h1{font-size:30px}.app{grid-template-columns:1fr}.side{position:static;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center}.side .logo{width:100%;padding-bottom:6px}.two,.g2{grid-template-columns:1fr}.main{padding:16px}}
+@media(prefers-reduced-motion:no-preference){.modal{animation:pop .15s ease-out}@keyframes pop{from{transform:scale(.97);opacity:0}}}
+</style></head><body><div id="root"></div><div id="md"></div>
+<script>
+const K='mds_db_v1',SK='mds_sess_v1';
+const PRI=['Low','Medium','High','Urgent'],TONES={ac:'Teal',wn:'Amber',mu:'Grey',pu:'Purple',ok:'Green',dg:'Red'};
+const defSt=()=>[['Open','ac',0,0,1],['In Progress','wn'],['On Hold','mu'],['Waiting for Customer','mu'],['Escalated','dg'],['Pending Review','pu'],['Reopened','ac'],['Completed','ok',0,1],['Cancelled','mu',0,1],['Resolved','ok',1,1,1],['Closed','mu',1,1,1]].map((a,i)=>({id:'s'+i,name:a[0],tone:a[1],adm:a[2]||0,done:a[3]||0,sys:a[4]||0})),defCh=()=>[['Email','Tickets received by email'],['Phone','Calls to the studio desk'],['WhatsApp','Client messages on WhatsApp'],['Web Portal','Raised from this service desk'],['Walk-in','Raised in person at the studio']].map((a,i)=>({id:'c'+i,name:a[0],desc:a[1]}));
+const $=s=>document.querySelector(s),esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid=()=>Math.random().toString(36).slice(2,9),dt=x=>x?new Date(x).toLocaleString([], {dateStyle:'medium',timeStyle:'short'}):'—',cls=s=>String(s).replace(/ /g,'-');
+let db,me=null,view='dash',curT=null,prevView='tix',tab='all',F={q:'',status:'',priority:'',group:'',channel:''};
+function save(){try{localStorage.setItem(K,JSON.stringify(db))}catch(e){}}
+function seed(){
+ const g=['Design','Video Editing','Marketing','IT Support','HR & Admin'].map((n,i)=>({id:'g'+i,name:n,desc:n+' department of MDS'}));
+ const u=(id,name,email,role,group)=>({id,name,email,pass:role==='admin'?'admin123':'user123',role,groups:[group],active:true});
+ db={seq:1005,groups:g,statuses:defSt(),channels:defCh(),users:[u('u0','Studio Admin','admin@mds.com','admin','g3'),Object.assign(u('u1','Aarav Rao','aarav@mds.com','user','g0'),{groups:['g0','g2']}),u('u2','Diya Nair','diya@mds.com','user','g1'),u('u3','Kabir Shah','kabir@mds.com','user','g3'),u('u4','Meera Iyer','meera@mds.com','user','g2')],tickets:[]};
+ const mk=(n,title,desc,pr,st,gr,as,days)=>db.tickets.push({id:uid(),no:'MDS-'+n,channel:'c'+(n%4),title,desc,priority:pr,status:st,group:gr,assignee:as,creator:'u0',due:new Date(Date.now()+days*864e5).toISOString().slice(0,10),created:new Date().toISOString(),comments:[],log:[{t:new Date().toISOString(),by:'u0',m:'created this ticket'}]});
+ mk(1001,'Brand kit for Lotus Cafe','Logo variants, palette and social templates.','High','In Progress','g0','u1',3);
+ mk(1002,'Edit wedding teaser (90s)','Colour grade and add licensed music.','Medium','Open','g1','u2',5);
+ mk(1003,'Studio Wi-Fi drops in edit bay','Replace access point and test.','Urgent','Open','g3','u3',-1);
+ mk(1004,'Instagram campaign calendar','November content plan.','Low','Pending Review','g2','u4',7);
+ save()}
+function load(){try{db=JSON.parse(localStorage.getItem(K))}catch(e){db=null}if(!db||!db.users)seed();db.users.forEach(u=>{if(!u.groups)u.groups=u.group?[u.group]:[]});if(!db.statuses)db.statuses=defSt();if(!db.channels)db.channels=defCh();db.tickets.forEach(t=>{if(t.channel===undefined)t.channel=''});
+ try{const s=localStorage.getItem(SK);me=s?db.users.find(x=>x.id===s&&x.active)||null:null}catch(e){}}
+const U=id=>db.users.find(x=>x.id===id),G=id=>db.groups.find(x=>x.id===id),isA=()=>me&&me.role==='admin';
+const uname=id=>U(id)?U(id).name:'Unassigned',gname=id=>G(id)?G(id).name:'—',inG=(u,g)=>(u.groups||[]).includes(g),ugn=u=>(u.groups||[]).map(gname).join(', ')||'No group';
+const vis=t=>isA()||t.assignee===me.id||t.creator===me.id||(!t.assignee&&inG(me,t.group));
+const pool=(g,cur)=>db.users.filter(u=>u.active&&(inG(u,g)||u.id===cur)),ST=n=>db.statuses.find(s=>s.name===n),stAdm=n=>!!(ST(n)||{}).adm,allSt=()=>db.statuses.map(s=>s.name),userSt=()=>db.statuses.filter(s=>!s.adm).map(s=>s.name),C=id=>db.channels.find(c=>c.id===id),cname=id=>C(id)?C(id).name:'—',done=t=>!!(ST(t.status)||{}).done,over=t=>t.due&&!done(t)&&new Date(t.due+'T23:59:59')<new Date();
+const toast=m=>{const d=document.createElement('div');d.className='toast';d.setAttribute('role','status');d.textContent=m;document.body.append(d);setTimeout(()=>d.remove(),2200)};
+const modal=h=>{$('#md').innerHTML='<div class="mask" data-act="mask"><div class="modal" role="dialog" aria-modal="true">'+h+'</div></div>'};
+const close=()=>{$('#md').innerHTML=''};
+const ago=x=>{const s=(Date.now()-new Date(x))/1000;return s<60?'just now':s<3600?Math.floor(s/60)+' min ago':s<86400?Math.floor(s/3600)+' h ago':Math.floor(s/86400)+' d ago'};
+const hm=m=>((m>=60?Math.floor(m/60)+' h ':'')+(m%60?m%60+' min':'')).trim()||'0 min';
+const log=(t,m,o,n)=>{t.updated=new Date().toISOString();t.log.push({t:t.updated,by:me.id,m,o,n})};
+const pill=(s,k)=>'<span class="pill '+(k==='s'?'t-'+((ST(s)||{}).tone||'mu'):k+'-'+cls(s))+'">'+esc(s)+'</span>';
+const opts=(arr,sel,f)=>arr.map(x=>{const v=f?x.id:x,l=f?x.name:x;return '<option value="'+esc(v)+'"'+(v===sel?' selected':'')+'>'+esc(l)+'</option>'}).join('');
+
+function render(){
+ if(!me){$('#root').innerHTML='<div class="login"><div class="hero"><div class="logo"><i>M</i>Marvellous Dream Studio</div><h1>One desk for every department.</h1><p>Raise, assign and track work across Design, Video, Marketing, IT and HR. Sign in with your studio account.</p></div><div class="lbox"><form data-form="login"><h2 style="margin:0">Sign in</h2><label for="e">Email</label><input id="e" name="email" type="email" required autocomplete="username"><label for="p">Password</label><input id="p" name="pass" type="password" required autocomplete="current-password"><p id="er" class="od" role="alert"></p><button class="btn" style="width:100%">Sign in</button><div class="demo">Demo accounts: <button type="button" data-fill="admin@mds.com|admin123">Admin</button><button type="button" data-fill="aarav@mds.com|user123">Designer</button><button type="button" data-fill="kabir@mds.com|user123">IT support</button></div></form></div></div>';return}
+ const nav=[['dash','Dashboard'],['tix','Tickets']].concat(isA()?[['usr','Users'],['grp','Groups'],['chn','Channels'],['sta','Statuses']]:[]);
+ $('#root').innerHTML='<div class="app"><nav class="side"><div class="logo"><i>M</i>MDS Service Desk</div>'+nav.map(n=>'<a tabindex="0" role="link" data-v="'+n[0]+'" class="'+(view===n[0]||(view==='ticket'&&n[0]==='tix')?'on':'')+'">'+n[1]+'</a>').join('')+'<div style="flex:1"></div><div style="padding:8px 12px;font-size:12px;color:#c9bddb">'+esc(me.name)+'<br>'+(isA()?'Administrator':esc(ugn(me)))+'</div><a data-act="logout" tabindex="0" role="button">Log out</a></nav><main class="main" id="mn"></main></div>';
+ ({dash,tix,usr,grp,chn,sta,ticket:tpage}[view]||dash)()}
+
+function dash(){
+ const T=db.tickets.filter(vis),c=s=>T.filter(t=>t.status===s).length;
+ const st=(n,l)=>'<div class="card stat"><b>'+n+'</b><span>'+l+'</span></div>';
+ const bars=(items,tot)=>items.map(([l,n])=>'<div class="bar"><em>'+esc(l)+'</em><div><u style="width:'+(tot?n/tot*100:0)+'%"></u></div><b>'+n+'</b></div>').join('');
+ $('#mn').innerHTML='<div class="top"><h2>'+(isA()?'Studio overview':'My workspace')+'</h2><button class="btn" data-act="newT">New ticket</button></div><div class="stats">'+st(T.length,'Total tickets')+st(c('Open'),'Open')+st(c('In Progress'),'In progress')+st(T.filter(over).length,'Overdue')+st(c('Closed')+c('Resolved'),'Resolved or closed')+'</div><div class="two"><div class="card"><b>By status</b>'+bars(allSt().map(s=>[s,c(s)]),T.length)+'</div><div class="card"><b>By department</b>'+bars(db.groups.map(g=>[g.name,T.filter(t=>t.group===g.id).length]),T.length)+'</div></div><div class="card"><b>Recent tickets</b>'+tbl(T.slice(-5).reverse())+'</div>'}
+
+function tbl(L){
+ if(!L.length)return '<div class="empty">No tickets here yet. Create one to get started.</div>';
+ return '<div class="tw"><table><thead><tr><th>ID</th><th>Subject</th><th>Department</th><th>Channel</th><th>Assignee</th><th>Priority</th><th>Status</th><th>Due</th></tr></thead><tbody>'+L.map(t=>'<tr class="cl" tabindex="0" data-act="openT" data-id="'+t.id+'"><td><b>'+t.no+'</b></td><td>'+esc(t.title)+'</td><td>'+esc(gname(t.group))+'</td><td>'+esc(cname(t.channel))+'</td><td>'+esc(uname(t.assignee))+'</td><td>'+pill(t.priority,'p')+'</td><td>'+pill(t.status,'s')+'</td><td>'+esc(t.due||'—')+(over(t)?' <span class="od">Overdue</span>':'')+'</td></tr>').join('')+'</tbody></table></div>'}
+
+function tix(){
+ $('#mn').innerHTML='<div class="top"><h2>Tickets</h2><button class="btn" data-act="newT">New ticket</button></div><div class="card"><div class="row" style="margin-bottom:12px"><input aria-label="Search" id="q" placeholder="Search by ID, subject or description" value="'+esc(F.q)+'" style="flex:2;min-width:180px"><select aria-label="Status" data-f="status" style="flex:1"><option value="">All statuses</option>'+opts(allSt(),F.status)+'</select><select aria-label="Priority" data-f="priority" style="flex:1"><option value="">All priorities</option>'+opts(PRI,F.priority)+'</select><select aria-label="Department" data-f="group" style="flex:1"><option value="">All departments</option>'+opts(db.groups,F.group,1)+'</select><select aria-label="Channel" data-f="channel" style="flex:1"><option value="">All channels</option>'+opts(db.channels,F.channel,1)+'</select></div><div id="tl"></div></div>';
+ list()}
+function list(){
+ const q=F.q.toLowerCase();
+ const L=db.tickets.filter(vis).filter(t=>(!F.status||t.status===F.status)&&(!F.priority||t.priority===F.priority)&&(!F.group||t.group===F.group)&&(!F.channel||t.channel===F.channel)&&(!q||(t.no+t.title+t.desc).toLowerCase().includes(q))).reverse();
+ $('#tl').innerHTML=tbl(L)}
+
+function tform(){
+ const gs=isA()?db.groups:db.groups.filter(g=>inG(me,g.id));
+ modal('<h3>New ticket</h3><form data-form="ticket"><label>Subject</label><input name="title" required maxlength="120"><label>Description</label><textarea name="desc" rows="3"></textarea><div class="g2"><div><label>Department</label><select name="group" data-gsel="1">'+opts(gs,(me.groups||[])[0],1)+'</select></div><div><label>Priority</label><select name="priority">'+opts(PRI,'Medium')+'</select></div>'+(isA()?'<div><label>Channel</label><select name="channel"><option value="">None</option>'+opts(db.channels,'',1)+'</select></div>':'')+(isA()?'<div><label>Assign to</label><select name="assignee" id="asg"><option value="">Unassigned</option>'+opts(pool((me.groups||[])[0]||(gs[0]||{}).id),'',1)+'</select></div>':'')+'<div><label>Due date</label><input type="date" name="due"></div></div><div class="row" style="margin-top:16px;justify-content:flex-end"><button type="button" class="btn g" data-act="close">Cancel</button><button class="btn">Create ticket</button></div></form>')}
+
+function detail(id){const y=view==='ticket'?window.scrollY:0;if(view!=='ticket')prevView=view;if(curT!==id)tab='all';curT=id;view='ticket';render();window.scrollTo(0,y)}
+function tpage(){
+ const t=db.tickets.find(x=>x.id===curT);
+ if(!t||!vis(t)){$('#mn').innerHTML='<div class="card empty">This ticket is not available.<br><br><button class="btn" data-act="back">Go back</button></div>';return}
+ const lock=!isA()&&stAdm(t.status),mine=isA()||t.assignee===me.id,canSt=mine&&!lock,canEdit=isA()||(t.creator===me.id&&!lock),sts=isA()?allSt():userSt();
+ const cs=t.comments.filter(c=>!c.internal||isA()||t.assignee===me.id||c.by===me.id),lg=t.log.filter(l=>l.m!=='Commented');
+ const items=cs.map(c=>Object.assign({k:'c'},c)).concat(lg.map(l=>Object.assign({k:'l'},l))).filter(x=>tab==='all'||(tab==='c'?x.k==='c':x.k==='l')).sort((a,b)=>new Date(b.t)-new Date(a.t));
+ const item=x=>{const who=uname(x.by),ini=who.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();let b;
+  if(x.k==='c')b='<b>'+esc(who)+'</b> '+(x.internal?'added an internal note':x.upd?'posted a progress update':'posted a reply')+'<div class="'+(x.internal?'note':'cm')+'">'+esc(x.m).replace(/\n/g,'<br>')+'</div>';
+  else b='<b>'+esc(who)+'</b> '+(/^[a-z]/.test(x.m)?'':'\u2013 ')+esc(x.m)+(x.o!==undefined?' <span class="chip">'+esc(x.o)+'</span> \u2192 <span class="chip">'+esc(x.n)+'</span>':'');
+  return '<li><div class="av" aria-hidden="true">'+esc(ini)+'</div><div><div>'+b+'</div><div class="lg" title="'+esc(dt(x.t))+'">'+dt(x.t)+' ('+ago(x.t)+')</div></div></li>'};
+ const sel=(f,h)=>'<select name="'+f+'" aria-label="'+f+'"'+(f==='group'?' data-gsel="1"':f==='assignee'?' id="asg"':'')+'>'+h+'</select>',pr=(l,v)=>'<div class="prop"><span>'+l+'</span><div>'+v+'</div></div>';
+ const A=[],b=(a,l,c,x)=>'<button class="btn '+(c||'g')+' s" data-act="'+a+'" data-id="'+t.id+'"'+(x||'')+'>'+l+'</button>';
+ const fin=['Resolved','Closed'].includes(t.status);
+ if(!t.assignee&&inG(me,t.group)&&!lock)A.push(b('take','Assign to me','',''));
+ if(mine&&!lock&&!done(t)&&ST('Completed'))A.push(b('setst','Mark completed','',' data-st="Completed"'));
+ if(isA()){if(!fin)A.push(b('setst','Resolve','g',' data-st="Resolved"'));if(t.status!=='Closed')A.push(b('setst','Close ticket','g',' data-st="Closed"'));if(fin)A.push(b('setst','Reopen','g',' data-st="'+(ST('Reopened')?'Reopened':'Open')+'"'))}
+ if(canEdit)A.push(b('editT','Edit ticket','g',''));
+ if(isA())A.push(b('delT','Delete','d',''));
+ const tabs=[['all','All activity',cs.length+lg.length],['c','Comments',cs.length],['l','Changes',lg.length]].map(a=>'<button class="btn s'+(tab===a[0]?'':' g')+'" data-tab="'+a[0]+'">'+a[1]+' ('+a[2]+')</button>').join('');
+ $('#mn').innerHTML='<div class="crumb"><a data-act="back" tabindex="0" role="link">'+(prevView==='dash'?'Dashboard':'Tickets')+'</a> / '+t.no+'</div><div class="top"><div><h2>'+esc(t.title)+'</h2><div class="row" style="margin-top:6px">'+pill(t.status,'s')+pill(t.priority,'p')+'<span class="lg">Raised by '+esc(uname(t.creator))+' on '+dt(t.created)+' via '+esc(cname(t.channel))+'</span></div></div><div class="row">'+A.join('')+'<button class="btn g s" data-act="back">Back</button></div></div>'
+ +'<div class="tp"><div><div class="card"><b>Description</b><p style="margin:6px 0 0">'+(t.desc?esc(t.desc).replace(/\n/g,'<br>'):'<span class="lg">No description provided.</span>')+'</p></div>'
+ +'<div class="card" style="margin-top:14px"><b>Reply or add a note</b><form data-form="comment" data-id="'+t.id+'"><textarea name="m" rows="3" required aria-label="Comment" placeholder="Write a reply for the team, or an internal note"></textarea><div class="row" style="margin-top:8px;justify-content:space-between"><select name="kind" style="width:auto" aria-label="Type"><option value="reply">Reply</option><option value="note">Internal note (admin and assignee only)</option></select><button class="btn">Post</button></div></form></div>'
+ +'<div class="card" style="margin-top:14px"><div class="tabs">'+tabs+'</div><ul class="tln">'+(items.length?items.map(item).join(''):'<li class="lg">Nothing here yet.</li>')+'</ul></div></div>'
+ +'<aside class="card"><b>Details</b><form data-form="tupdate" data-id="'+t.id+'">'
+ +pr('Status',canSt?sel('status',(sts.includes(t.status)?'':'<option selected>'+esc(t.status)+'</option>')+opts(sts,t.status)):pill(t.status,'s')+'<div class="lg">'+(lock?'Only an admin can change this status.':'Only the assignee or an admin can change status.')+'</div>')
+ +pr('Priority',isA()?sel('priority',opts(PRI,t.priority)):pill(t.priority,'p'))
+ +pr('Assignee',isA()?sel('assignee','<option value="">Unassigned</option>'+opts(pool(t.group,t.assignee),t.assignee,1)):esc(uname(t.assignee)))
+ +pr('Department',isA()?sel('group',opts(db.groups,t.group,1)):esc(gname(t.group)))
+ +pr('Channel',isA()?sel('channel','<option value="">None</option>'+opts(db.channels,t.channel,1)):esc(cname(t.channel)))
+ +pr('Due date',(isA()?'<input type="date" name="due" value="'+esc(t.due||'')+'" aria-label="Due date">':esc(t.due||'No due date'))+(over(t)?' <span class="od">Overdue</span>':''))
+ +pr('Time spent',esc(t.spent?hm(t.spent):'None logged'))
+ +pr('Raised by',esc(uname(t.creator)))+pr('Created',dt(t.created))+pr('Last updated',dt(t.updated||t.created)+'<div class="lg">'+ago(t.updated||t.created)+'</div>')+pr('Age',Math.floor((Date.now()-new Date(t.created))/864e5)+' days')
+ +'<div style="margin-top:10px"><label for="un">Progress update (optional)</label><textarea id="un" name="note" rows="3" placeholder="What changed or what was done?"></textarea></div>'
+ +(mine?'<div><label for="us">Log time worked (minutes)</label><input id="us" name="spent" type="number" min="0" max="1440" step="5" placeholder="e.g. 30"></div>':'')
+ +'<div class="row" style="margin-top:12px"><button class="btn">Save update</button><button type="button" class="btn g" data-act="resetT">Reset</button></div></form></aside></div>'}
+function tedit(id){const t=db.tickets.find(x=>x.id===id);if(!t)return;
+ modal('<h3>Edit '+t.no+'</h3><form data-form="tedit" data-id="'+t.id+'"><label>Subject</label><input name="title" required maxlength="120" value="'+esc(t.title)+'"><label>Description</label><textarea name="desc" rows="5">'+esc(t.desc)+'</textarea><div class="row" style="margin-top:16px;justify-content:flex-end"><button type="button" class="btn g" data-act="close">Cancel</button><button class="btn">Save changes</button></div></form>')}
+
+function usr(){
+ $('#mn').innerHTML='<div class="top"><h2>Users</h2><button class="btn" data-act="newU">Add user</button></div><div class="card tw"><table><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Group</th><th>Tickets</th><th></th></tr></thead><tbody>'+db.users.map(u=>'<tr><td><b>'+esc(u.name)+'</b></td><td>'+esc(u.email)+'</td><td>'+(u.role==='admin'?'Admin':'User')+(u.active?'':' (disabled)')+'</td><td>'+esc(ugn(u))+'</td><td>'+db.tickets.filter(t=>t.assignee===u.id).length+'</td><td><button class="btn g s" data-act="editU" data-id="'+u.id+'">Edit</button> '+(u.id===me.id?'':'<button class="btn d s" data-act="delU" data-id="'+u.id+'">Delete</button>')+'</td></tr>').join('')+'</tbody></table></div>'}
+function uform(id){
+ const u=id?U(id):{name:'',email:'',role:'user',groups:db.groups[0]?[db.groups[0].id]:[],active:true};
+ modal('<h3>'+(id?'Edit user':'Add user')+'</h3><form data-form="user" data-id="'+(id||'')+'"><div class="g2"><div><label>Full name</label><input name="name" required value="'+esc(u.name)+'"></div><div><label>Email</label><input name="email" type="email" required value="'+esc(u.email)+'"></div><div><label>Password'+(id?' (leave blank to keep)':'')+'</label><input name="pass" type="password" minlength="6"'+(id?'':' required')+'></div><div><label>Role</label><select name="role"><option value="user"'+(u.role==='user'?' selected':'')+'>User</option><option value="admin"'+(u.role==='admin'?' selected':'')+'>Admin</option></select></div><div><label>Groups (one or more)</label>'+db.groups.map(g=>'<label style="display:flex;gap:8px;align-items:center;margin:4px 0;color:var(--tx);font-weight:500"><input type="checkbox" name="groups" value="'+g.id+'" style="width:auto"'+(inG(u,g.id)?' checked':'')+'>'+esc(g.name)+'</label>').join('')+'</div><div><label>Status</label><select name="active"><option value="1"'+(u.active?' selected':'')+'>Active</option><option value="0"'+(u.active?'':' selected')+'>Disabled</option></select></div></div><div class="row" style="margin-top:16px;justify-content:flex-end"><button type="button" class="btn g" data-act="close">Cancel</button><button class="btn">Save user</button></div></form>')}
+
+function grp(){
+ $('#mn').innerHTML='<div class="top"><h2>Groups</h2><button class="btn" data-act="newG">Create group</button></div><div class="card tw"><table><thead><tr><th>Group</th><th>Description</th><th>Members</th><th>Tickets</th><th></th></tr></thead><tbody>'+db.groups.map(g=>'<tr><td><b>'+esc(g.name)+'</b></td><td>'+esc(g.desc)+'</td><td>'+db.users.filter(u=>inG(u,g.id)).map(u=>esc(u.name)).join(', ')+'</td><td>'+db.tickets.filter(t=>t.group===g.id).length+'</td><td><button class="btn g s" data-act="editG" data-id="'+g.id+'">Edit</button> <button class="btn d s" data-act="delG" data-id="'+g.id+'">Delete</button></td></tr>').join('')+'</tbody></table></div>'}
+function gform(id){
+ const g=id?G(id):{name:'',desc:''};
+ modal('<h3>'+(id?'Edit group':'Create group')+'</h3><form data-form="group" data-id="'+(id||'')+'"><label>Group name</label><input name="name" required value="'+esc(g.name)+'"><label>Description</label><textarea name="desc" rows="2">'+esc(g.desc)+'</textarea>'+(id?'<label>Members</label><select name="members" multiple size="5">'+db.users.map(u=>'<option value="'+u.id+'"'+(inG(u,id)?' selected':'')+'>'+esc(u.name)+'</option>').join('')+'</select><div class="lg">Selected users are added to this group. They can also belong to other groups. Hold Ctrl or Cmd to select several.</div>':'')+'<div class="row" style="margin-top:16px;justify-content:flex-end"><button type="button" class="btn g" data-act="close">Cancel</button><button class="btn">Save group</button></div></form>')}
+
+function chn(){
+ $('#mn').innerHTML='<div class="top"><h2>Channels</h2><button class="btn" data-act="newC">Create channel</button></div><div class="card tw"><table><thead><tr><th>Channel</th><th>Description</th><th>Tickets</th><th></th></tr></thead><tbody>'+db.channels.map(c=>'<tr><td><b>'+esc(c.name)+'</b></td><td>'+esc(c.desc)+'</td><td>'+db.tickets.filter(t=>t.channel===c.id).length+'</td><td><button class="btn g s" data-act="editC" data-id="'+c.id+'">Edit</button> <button class="btn d s" data-act="delC" data-id="'+c.id+'">Delete</button></td></tr>').join('')+'</tbody></table></div>'}
+function cform(id){const c=id?C(id):{name:'',desc:''};
+ modal('<h3>'+(id?'Edit channel':'Create channel')+'</h3><form data-form="channel" data-id="'+(id||'')+'"><label>Channel name</label><input name="name" required maxlength="40" value="'+esc(c.name)+'"><label>Description</label><textarea name="desc" rows="2">'+esc(c.desc)+'</textarea><div class="row" style="margin-top:16px;justify-content:flex-end"><button type="button" class="btn g" data-act="close">Cancel</button><button class="btn">Save channel</button></div></form>')}
+function sta(){
+ $('#mn').innerHTML='<div class="top"><h2>Statuses</h2><button class="btn" data-act="newS">Create status</button></div><div class="card tw"><table><thead><tr><th>Status</th><th>Who can set it</th><th>Counts as finished</th><th>Tickets</th><th></th></tr></thead><tbody>'+db.statuses.map(s=>'<tr><td>'+pill(s.name,'s')+(s.sys?' <span class="lg">built in</span>':'')+'</td><td>'+(s.adm?'Admin only':'Assigned user or admin')+'</td><td>'+(s.done?'Yes':'No')+'</td><td>'+db.tickets.filter(t=>t.status===s.name).length+'</td><td><button class="btn g s" data-act="editS" data-id="'+s.id+'">Edit</button> '+(s.sys?'':'<button class="btn d s" data-act="delS" data-id="'+s.id+'">Delete</button>')+'</td></tr>').join('')+'</tbody></table></div>'}
+function sform(id){const s=id?db.statuses.find(x=>x.id===id):{name:'',tone:'ac',adm:0,done:0};
+ const ck=(n,l,on,dis)=>'<label style="display:flex;gap:8px;align-items:center;margin:8px 0;color:var(--tx);font-weight:500"><input type="checkbox" name="'+n+'" value="1" style="width:auto"'+(on?' checked':'')+(dis?' disabled':'')+'>'+l+'</label>';
+ modal('<h3>'+(id?'Edit status':'Create status')+'</h3><form data-form="status" data-id="'+(id||'')+'"><label>Status name</label><input name="name" required maxlength="30" value="'+esc(s.name)+'"'+(s.sys?' readonly':'')+'><label>Colour</label><select name="tone">'+Object.keys(TONES).map(k=>'<option value="'+k+'"'+(k===s.tone?' selected':'')+'>'+TONES[k]+'</option>').join('')+'</select>'+ck('adm','Only admins can set this status',s.adm,s.sys)+ck('done','Counts as finished (stops the overdue flag)',s.done,false)+'<div class="lg">A new status shows up in every ticket status list straight away.'+(s.sys?' Built-in statuses cannot be renamed or deleted.':'')+'</div><div class="row" style="margin-top:16px;justify-content:flex-end"><button type="button" class="btn g" data-act="close">Cancel</button><button class="btn">Save status</button></div></form>')}
+
+document.addEventListener('click',e=>{
+ const f=e.target.closest('[data-fill]');if(f){const[a,b]=f.dataset.fill.split('|');$('#e').value=a;$('#p').value=b;return}
+ const tb=e.target.closest('[data-tab]');if(tb){tab=tb.dataset.tab;const y=window.scrollY;render();window.scrollTo(0,y);return}
+ const v=e.target.closest('[data-v]');if(v){view=v.dataset.v;render();return}
+ const el=e.target.closest('[data-act]');if(!el)return;const a=el.dataset.act,id=el.dataset.id;
+ if(a==='mask'){if(e.target===el)close();return}
+ if(a==='close')close();
+ else if(a==='logout'){try{localStorage.removeItem(SK)}catch(x){}me=null;view='dash';render()}
+ else if(a==='newT')tform();else if(a==='openT')detail(id);
+ else if(a==='back'){view=prevView||'tix';render()}else if(a==='setst'){const k=db.tickets.find(x=>x.id===id);if(k)applyChange(k,'status',el.dataset.st)}else if(a==='editT')tedit(id);else if(a==='resetT')detail(curT);
+ else if(a==='newU')uform();else if(a==='editU')uform(id);
+ else if(a==='newG')gform();else if(a==='editG')gform(id);
+ else if(a==='newC')cform();else if(a==='editC')cform(id);else if(a==='newS')sform();else if(a==='editS')sform(id);
+ else if(a==='delC'){const n=db.tickets.filter(t=>t.channel===id).length;if(confirm('Delete this channel'+(n?' and clear it from '+n+' ticket(s)':'')+'?')){db.tickets.forEach(t=>{if(t.channel===id)t.channel=''});db.channels=db.channels.filter(c=>c.id!==id);if(F.channel===id)F.channel='';save();render();toast('Channel deleted')}}
+ else if(a==='delS'){const s=db.statuses.find(x=>x.id===id);if(!s||s.sys)return;if(db.tickets.some(t=>t.status===s.name))return toast('Move tickets out of this status first');if(confirm('Delete status '+s.name+'?')){db.statuses=db.statuses.filter(x=>x.id!==id);if(F.status===s.name)F.status='';save();render();toast('Status deleted')}}
+ else if(a==='take'){const k=db.tickets.find(x=>x.id===id);if(k&&!k.assignee&&inG(me,k.group)){k.assignee=me.id;log(k,'picked up this ticket','Unassigned',me.name);save();detail(id);render();toast('Ticket assigned to you')}}
+ else if(a==='delT'&&confirm('Delete this ticket permanently?')){db.tickets=db.tickets.filter(t=>t.id!==id);save();close();if(view==='ticket')view=prevView||'tix';render();toast('Ticket deleted')}
+ else if(a==='delU'&&id!==me.id&&confirm('Delete this user? Their tickets become unassigned.')){db.tickets.forEach(t=>{if(t.assignee===id)t.assignee=''});db.users=db.users.filter(u=>u.id!==id);save();render();toast('User deleted')}
+ else if(a==='delG'){if(db.tickets.some(t=>t.group===id))return toast('Reassign or delete the tickets in this group first');const n=db.users.filter(u=>inG(u,id)).length;if(confirm('Delete this group'+(n?' and remove it from '+n+' member(s)':'')+'?')){db.users.forEach(u=>{u.groups=(u.groups||[]).filter(x=>x!==id)});if(F.group===id)F.group='';db.groups=db.groups.filter(g=>g.id!==id);save();render();toast('Group deleted')}}
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')close();if(e.key==='Enter'&&e.target.matches('[data-act],[data-v]')&&!e.target.matches('button'))e.target.click()});
+document.addEventListener('input',e=>{if(e.target.id==='q'){F.q=e.target.value;list()}});
+document.addEventListener('change',e=>{
+ const t=e.target;
+ if(t.dataset.f){F[t.dataset.f]=t.value;list();return}
+ if(t.dataset.gsel){const cur=$('#asg').value;$('#asg').innerHTML='<option value="">Unassigned</option>'+opts(pool(t.value),cur,1);return}
+ if(!t.dataset.chg)return;
+ const k=db.tickets.find(x=>x.id===t.dataset.id);if(k)applyChange(k,t.dataset.chg,t.value)});
+function applyChange(k,f,v,batch){
+ if(f==='status'){if(!isA()&&(stAdm(v)||!ST(v)||k.assignee!==me.id||stAdm(k.status)))return toast('Not allowed');}
+ else if(!isA())return;
+ if(f==='assignee'&&v&&!inG(U(v)||{},k.group))return toast('That user is not in this department');
+ const old=k[f];if(old===v)return;
+ const L={status:'Status',priority:'Priority',channel:'Channel',due:'Due date',group:'Department',assignee:'Assignee'};if(!L[f])return;
+ const sh=x=>f==='assignee'?(x?uname(x):'Unassigned'):f==='channel'?(x?cname(x):'None'):f==='group'?gname(x):(x||'None');
+ k[f]=v;log(k,'changed '+L[f],sh(old),sh(v));
+ if(f==='group'&&k.assignee&&!inG(U(k.assignee)||{},v)){log(k,'removed the assignee because they are not in '+gname(v),uname(k.assignee),'Unassigned');k.assignee=''}
+ if(batch)return true;save();toast('Ticket updated');detail(k.id)}
+document.addEventListener('submit',e=>{
+ e.preventDefault();const f=e.target,k=f.dataset.form,d=Object.fromEntries(new FormData(f)),id=f.dataset.id;
+ if(k==='login'){const u=db.users.find(x=>x.email.toLowerCase()===d.email.trim().toLowerCase()&&x.pass===d.pass);
+  if(!u||!u.active){$('#er').textContent=u?'This account is disabled. Contact your admin.':'Email or password is incorrect.';return}
+  me=u;try{localStorage.setItem(SK,u.id)}catch(x){}view='dash';render();return}
+ if(k==='ticket'){const t={id:uid(),no:'MDS-'+(db.seq++),title:d.title.trim(),desc:d.desc,priority:d.priority,status:'Open',group:d.group,assignee:d.assignee||'',channel:isA()?(d.channel||''):(C('c3')?'c3':''),creator:me.id,due:d.due,created:new Date().toISOString(),comments:[],log:[]};log(t,'created this ticket in '+gname(t.group)+(t.channel?' via '+cname(t.channel):'')+(t.assignee?' and assigned it to '+uname(t.assignee):''));db.tickets.push(t);save();close();render();toast('Ticket '+t.no+' created')}
+ if(k==='tupdate'){const t=db.tickets.find(x=>x.id===id);if(!t||!vis(t))return;let n=0;
+  ['group','assignee','status','priority','channel','due'].forEach(fl=>{if(d[fl]!==undefined&&applyChange(t,fl,d[fl],true))n++});
+  const note=(d.note||'').trim(),mins=Math.max(0,Math.floor(Number(d.spent)||0));
+  if(note){t.comments.push({t:new Date().toISOString(),by:me.id,m:note,upd:true});t.updated=new Date().toISOString();n++}
+  if(mins&&(isA()||t.assignee===me.id)){t.spent=(t.spent||0)+mins;log(t,'logged '+hm(mins)+' of work (total '+hm(t.spent)+')');n++}
+  if(!n)return toast('Nothing to update');save();detail(id);toast('Ticket updated');return}
+ if(k==='tedit'){const t=db.tickets.find(x=>x.id===id);if(!t||!(isA()||(t.creator===me.id&&!stAdm(t.status))))return;const nt=d.title.trim();if(nt&&nt!==t.title){log(t,'edited the subject',t.title,nt);t.title=nt}if(d.desc!==t.desc){log(t,'updated the description');t.desc=d.desc}save();close();detail(id);toast('Ticket updated');return}
+ if(k==='comment'){const t=db.tickets.find(x=>x.id===id);t.comments.push({t:new Date().toISOString(),by:me.id,m:d.m.trim(),internal:d.kind==='note'});t.updated=new Date().toISOString();save();detail(id);toast(d.kind==='note'?'Internal note added':'Reply posted');return}
+ if(k==='user'){if(db.users.some(u=>u.email.toLowerCase()===d.email.toLowerCase()&&u.id!==id))return toast('Email already in use');
+  const p={name:d.name.trim(),email:d.email.trim(),role:d.role,groups:new FormData(f).getAll('groups'),active:d.active==='1'};if(!p.groups.length)return toast('Pick at least one group');
+  if(id){if(id===me.id&&!p.active)return toast('You cannot disable yourself');if(id===me.id&&p.role!=='admin')return toast('You cannot remove your own admin role');Object.assign(U(id),p);if(d.pass)U(id).pass=d.pass}else db.users.push(Object.assign({id:uid(),pass:d.pass},p));
+  save();close();render();toast('User saved')}
+ if(k==='channel'){const nm=d.name.trim();if(db.channels.some(c=>c.name.toLowerCase()===nm.toLowerCase()&&c.id!==id))return toast('Channel name already exists');if(id)Object.assign(C(id),{name:nm,desc:d.desc});else db.channels.push({id:uid(),name:nm,desc:d.desc});save();close();render();toast('Channel saved')}
+ if(k==='status'){const nm=d.name.trim();if(db.statuses.some(s=>s.name.toLowerCase()===nm.toLowerCase()&&s.id!==id))return toast('Status name already exists');const o=id?db.statuses.find(x=>x.id===id):null,p={name:nm,tone:d.tone,adm:d.adm==='1'?1:0,done:d.done==='1'?1:0};if(o){if(o.sys){p.name=o.name;p.adm=o.name==='Open'?0:1}else if(p.name!==o.name)db.tickets.forEach(t=>{if(t.status===o.name)t.status=p.name});Object.assign(o,p)}else db.statuses.push(Object.assign({id:uid()},p));save();close();render();toast('Status saved')}
+ if(k==='group'){if(id){const g=G(id);g.name=d.name.trim();g.desc=d.desc;const m=new FormData(f).getAll('members');db.users.forEach(u=>{const has=inG(u,id),want=m.includes(u.id);if(want&&!has)u.groups.push(id);if(!want&&has)u.groups=u.groups.filter(x=>x!==id)})}else db.groups.push({id:uid(),name:d.name.trim(),desc:d.desc});save();close();render();toast('Group saved')}
+});
+load();render();
+</script></body></html>
