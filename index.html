@@ -107,7 +107,8 @@ const $=s=>document.querySelector(s),esc=s=>String(s==null?'':s).replace(/[&<>"'
 const uid=()=>Math.random().toString(36).slice(2,9),dt=x=>x?new Date(x).toLocaleString([], {dateStyle:'medium',timeStyle:'short'}):'—',cls=s=>String(s).replace(/ /g,'-');
 let db,me=null,view='dash',curT=null,prevView='tix',tab='all',F={q:'',status:'',priority:'',group:'',channel:''};
 /* ================= Supabase connection (shared database) ================= */
-const SB={url:'https://kalqfjfoyyikjslhlmxx.supabase.co',key:'sb_publishable_TqwpugjQcTgiMdznRNcUqQ_e9yeQS0T'};
+/* FUNCTION_NAME below must match the name of the Edge Function you deployed in Supabase */
+const SB={url:'https://kalqfjfoyyikjslhlmxx.supabase.co',key:'sb_publishable_TqwpugjQcTgiMdznRNcUqQ_e9yeQS0T',fnName:'admin-users'};
 db={users:[],groups:[],channels:[],statuses:[],tickets:[]};
 let sess=null,busy=false,pollT=null,pollBound=false;
 const COL={status:'status',priority:'priority',channel:'channel_id',due:'due',group:'group_id',assignee:'assignee'};
@@ -149,7 +150,11 @@ async function poll(){if(!me||busy||document.hidden||document.querySelector('.mo
  const before=sig(),was=view==='ticket'?curT:null;try{await syncNow();if(was)await loadExtras(was)}catch(e){return}
  if(sig()!==before){const y=window.scrollY;render();window.scrollTo(0,y)}}
 async function run(fn,ok){busy=true;document.body.classList.add('busy');try{const r=await fn();if(ok)toast(ok);return r}catch(e){if(!e||e.message!=='disabled')toast(friendly(e));try{if(me)await syncNow()}catch(x){}return null}finally{busy=false;document.body.classList.remove('busy')}}
-const fn=body=>sbx('/functions/v1/admin-users',{method:'POST',body});
+const fn=async body=>{const nm=SB.fnName;try{return await sbx('/functions/v1/'+nm,{method:'POST',body})}catch(e){
+ if(!e.status&&/fetch|network|load failed/i.test(e.message))throw new Error('Cannot reach the "'+nm+'" function. In Supabase open Edge Functions: it must be deployed and its JWT verification turned OFF.');
+ if(e.status===404)throw new Error('The "'+nm+'" function was not found. Deploy it in Supabase under Edge Functions (the name must match exactly).');
+ if(e.status===401&&/jwt|authorization/i.test(e.message))throw new Error('Supabase blocked the request before it reached the function. Turn JWT verification OFF for '+nm+' (Edge Functions, '+nm+', details).');
+ throw e}};
 async function patchProf(id,body){const r=await sbx('/rest/v1/profiles?id=eq.'+id,{method:'PATCH',headers:{Prefer:'return=representation'},body});if(!r||!r.length)throw new Error('Not allowed');return r}
 async function commit(k,o,extra){
  const row={};for(const f in o.patch){row[COL[f]]=o.patch[f]===''?null:o.patch[f]}
