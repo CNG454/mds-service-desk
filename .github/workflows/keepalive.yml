@@ -1,0 +1,19 @@
+# Keeps the FREE Supabase project from pausing after a week with no activity.
+# Save this file in your GitHub repo at:  .github/workflows/keepalive.yml
+name: keep-supabase-awake
+
+on:
+  schedule:
+    - cron: "17 5 * * *"      # every day at 05:17 UTC
+  workflow_dispatch:           # lets you also run it by hand from the Actions tab
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping the database
+        run: |
+          curl -sS -f -X POST "https://kalqfjfoyyikjslhlmxx.supabase.co/rest/v1/rpc/ping" \
+            -H "apikey: sb_publishable_TqwpugjQcTgiMdznRNcUqQ_e9yeQS0T" \
+            -H "Content-Type: application/json" \
+            -d '{}'
